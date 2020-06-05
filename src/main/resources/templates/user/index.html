@@ -8,7 +8,16 @@
 
 <p th:text="'Welcome, ' + ${username} + '!'">Welcome, nameless person! How did you do that?</p>
 <br>
-<a th:href="@{/}">Select spa services</a>
+<a th:href="@{/}">Select your spa services</a>
+<br>
+<h3>List of users:</h3>
+<ol>
+    <th:block th:each="user: ${databaseOfUsers}">
+        <a th:href="@{'/user/id/' + ${user.id}}"><li th:text="${user.username}"></li></a>
+    </th:block>
+</ol>
+<br>
+<a th:href="@{/user/add}">Add another user</a>
 
 </body>
 </html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="'Member details for ' + ${userdata.username}">Member details</title>
+</head>
+<body>
+<p th:text="'Username: ' + ${userdata.username}"></p>
+<p th:text="'Email: ' + ${userdata.email}"></p>
+<p th:text="'Member since: ' + ${userdata.date}"></p>
+</body>
+</html>

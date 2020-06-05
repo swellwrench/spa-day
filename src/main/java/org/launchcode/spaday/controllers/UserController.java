@@ -1,5 +1,6 @@
 package org.launchcode.spaday.controllers;
 
+import org.launchcode.spaday.data.UserData;
 import org.launchcode.spaday.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,8 @@ public class UserController {
         model.addAttribute("username",user.getUsername());
         model.addAttribute("email",user.getEmail());
         if(verify.equals(user.getPassword())) {
+            UserData.add(user);
+            model.addAttribute("databaseOfUsers",UserData.getAll());
             return "/user/index";
         } else {
             model.addAttribute("error","error");
@@ -30,6 +33,12 @@ public class UserController {
     @GetMapping("user")
     public String displayWelcomeMessage() {
         return "/user/index";
+    }
+
+    @GetMapping("user/id/{id}")
+    public String displayUserInfoPage(Model model,@PathVariable int id) {
+        model.addAttribute("userdata",UserData.getById(id));
+        return "/user/userInfoPage";
     }
 
 }
